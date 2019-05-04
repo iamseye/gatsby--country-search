@@ -1,42 +1,35 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon as darkMoon } from '@fortawesome/free-solid-svg-icons';
+import { faMoon } from '@fortawesome/free-regular-svg-icons';
+import { ThemeToggler } from 'gatsby-plugin-dark-mode';
+import '../styles/header.scss';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
+
+const Header = () => (
+  <header>
+    <h3>
+      Where in the world ?
+    </h3>
+    <ThemeToggler>
+      {({ theme, toggleTheme }) => (
+        <div
+          className="switchMode"
+          onClick={() => toggleTheme(theme === 'dark' ? 'light' : 'dark')}
         >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+          {theme === 'dark' ? (
+            <FontAwesomeIcon icon={darkMoon} />
+          ) : (
+            <FontAwesomeIcon icon={faMoon} />
+          )}
+
+          <p>
+            Dark Mode
+          </p>
+        </div>
+      )}
+    </ThemeToggler>
   </header>
-)
+);
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
+export default Header;
