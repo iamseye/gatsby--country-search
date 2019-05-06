@@ -18,6 +18,5 @@
       "extensions": [".js", ".jsx"]
     }],
     "react/destructuring-assignment": [<enabled>, 'never']
-
   }
 }

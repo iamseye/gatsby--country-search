@@ -7,7 +7,7 @@ import '../styles/header.scss';
 
 
 const Header = () => (
-  <header>
+  <header className="header">
     <h3>
       Where in the world ?
     </h3>

@@ -1,0 +1,12 @@
+@import '_variables';
+
+.mainContent {
+  padding: 1.5rem;
+  background-color: $color-very-light-grey;
+}
+
+.countryCards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
