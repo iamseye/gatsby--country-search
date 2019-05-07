@@ -8,10 +8,12 @@ const CountryCard = props => (
   <Card
     className="country-card"
   >
-    <CardMedia
-      className="country-card__image"
-      image={props.image}
-    />
+    <div className="country-card__image--outer">
+      <CardMedia
+        className="country-card__image--inner"
+        image={props.image}
+      />
+    </div>
     <CardContent
       className="country-card__content"
     >

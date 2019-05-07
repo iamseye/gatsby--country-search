@@ -10,3 +10,10 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+// dark mode
+body.dark {
+  .mainContent {
+    background-color: $color-very-dark-blue-bg;
+  }
+}
