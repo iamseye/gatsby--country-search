@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
 import CountryCard from './countryCard';
+import SearchBox from './searchBox';
 import '../styles/mainContent.scss';
 
 class MainContent extends Component {
   state = {
-    countires: [],
+    countries: [],
   }
 
   componentDidMount() {
     fetch(`${process.env.GATSBY_ALL_COUNTRIES_API}`)
       .then(res => res.json())
       .then((data) => {
-        this.setState({ countires: data });
+        this.setState({ countries: data });
+        console.log(data);
       })
       .catch(console.log);
   }
 
   render() {
-    const { countires } = this.state;
+    const { countries } = this.state;
     return (
       <div className="mainContent">
+        <SearchBox
+          countries={this.state.countries}
+        />
         <div className="countryCards">
-          {countires.map(country => (
+          {countries.map(country => (
             <CountryCard
               key={country.alpha2Code}
               image={country.flag}
