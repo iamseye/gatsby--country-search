@@ -6,27 +6,38 @@ import '../styles/mainContent.scss';
 class MainContent extends Component {
   state = {
     countries: [],
+    resultCountries: [],
   }
 
   componentDidMount() {
     fetch(`${process.env.GATSBY_ALL_COUNTRIES_API}`)
       .then(res => res.json())
       .then((data) => {
-        this.setState({ countries: data });
+        this.setState({ countries: data, resultCountries: data });
         console.log(data);
       })
       .catch(console.log);
   }
 
+  searchCountry = (selectedCountry) => {
+    fetch(`${process.env.GATSBY_SEARCH_COUNTRY_API}${selectedCountry}`)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({ resultCountries: [data] });
+      })
+      .catch(console.log);
+  }
+
   render() {
-    const { countries } = this.state;
+    const { countries, resultCountries } = this.state;
     return (
       <div className="mainContent">
         <SearchBox
-          countries={this.state.countries}
+          countries={countries}
+          searchCountry={this.searchCountry}
         />
         <div className="countryCards">
-          {countries.map(country => (
+          {resultCountries.map(country => (
             <CountryCard
               key={country.alpha2Code}
               image={country.flag}
