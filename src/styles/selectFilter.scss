@@ -1,0 +1,23 @@
+.selectFilter {
+  margin-right: 1.5rem;
+
+  &__form {
+    background-color: white;
+    fieldset {
+      border-color: white;
+    }
+  }
+
+  &__select {
+    width: 10rem;
+    
+    > div > div{
+      padding: 1rem 1rem;
+      background-color: white;
+    }
+
+    em {
+      font-style: normal;
+    }
+  }
+}

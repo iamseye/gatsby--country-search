@@ -3,6 +3,11 @@
 .mainContent {
   padding: 1.5rem;
   background-color: $color-very-light-grey;
+
+  &__searchBar {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .countryCards {

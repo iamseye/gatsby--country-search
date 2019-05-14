@@ -1,8 +1,14 @@
+@import '_variables';
+
 .searchBox {
   display: flex;
   align-items: center;
   margin-left: 1.5rem;
   position: relative;;
+
+  &__input {
+    padding: .5rem 1rem;
+  }
 
   &__selection {
     position: absolute;
@@ -10,5 +16,44 @@
     margin-top: 2rem;
     left: 0;
     right: 0;
+  }
+
+  svg{
+    margin-left: .8rem;
+  }
+
+  input {
+    margin-left: 1rem;
+  }
+}
+
+.fa-search {
+  color: $color-dark-grey;
+}
+
+// dark mode
+body.dark {
+  .fa-search {
+    color: $color-white;
+  }
+
+  .searchBox__input {
+    background-color: $color-dark-blue;
+
+    input {
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $color-white;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $color-white;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $color-white;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $color-white;
+      }
+    }
+
   }
 }

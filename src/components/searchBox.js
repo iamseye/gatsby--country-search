@@ -45,7 +45,7 @@ const SearchBox = props => (
         <div>
           <Paper className="searchBox__input">
             <FontAwesomeIcon icon={faSearch} />
-            <InputBase {...getInputProps()} />
+            <InputBase placeholder="Search for a country..." {...getInputProps()} />
           </Paper>
           <div {...getMenuProps()}>
             {isOpen
