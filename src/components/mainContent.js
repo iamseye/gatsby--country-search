@@ -11,14 +11,9 @@ class MainContent extends Component {
     filterRegion: '',
   }
 
+
   componentDidMount() {
-    fetch(`${process.env.GATSBY_ALL_COUNTRIES_API}`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({ countries: data, resultCountries: data });
-        console.log(data);
-      })
-      .catch(console.log);
+    this.listAllCountires();
   }
 
   searchCountry = (selectedCountry) => {
@@ -31,8 +26,29 @@ class MainContent extends Component {
   }
 
   handleSelectRegion = (event) => {
-    this.setState({ filterRegion: event.target.value });
+    const selectedRegion = event.target.value;
+    this.setState({ filterRegion: selectedRegion });
+    if (selectedRegion !== '') {
+      fetch(`${process.env.GATSBY_SEARCH_REGION_API}${event.target.value}`)
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ resultCountries: data });
+        })
+        .catch(console.log);
+    } else {
+      this.listAllCountires();
+    }
   };
+
+  listAllCountires() {
+    fetch(`${process.env.GATSBY_ALL_COUNTRIES_API}`)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({ countries: data, resultCountries: data });
+        console.log(data);
+      })
+      .catch(console.log);
+  }
 
   render() {
     const { countries, resultCountries } = this.state;

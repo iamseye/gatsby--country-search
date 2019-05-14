@@ -1,23 +1,61 @@
+@import '_variables';
+
 .selectFilter {
   margin-right: 1.5rem;
 
   &__form {
-    background-color: white;
+    background-color: $color-white;
+    border-radius: 4px;
+    
     fieldset {
-      border-color: white;
+      border-color: $color-white;
     }
   }
 
   &__select {
     width: 10rem;
-    
+
     > div > div{
       padding: 1rem 1rem;
-      background-color: white;
+      background-color: $color-white;
+      box-shadow: 0 0 0.3rem $color-light-grey;
     }
 
     em {
       font-style: normal;
     }
+  }
+}
+
+.selectFilter .selectFilter__menu {
+  box-shadow: 0 0 0.3rem $color-light-grey;
+  background-color: $color-white;
+  color: black;
+}
+
+body.dark {
+  .selectFilter {
+    &__form {
+      background-color: $color-dark-blue;
+
+      fieldset {
+        border-color: $color-dark-blue;
+      }
+    }
+    &__select {
+      > div > div {
+        background-color: $color-dark-blue;
+        box-shadow: 0 0 0.3rem $color-dark-blue-shade;
+      }
+
+      em {
+        color: $color-white;
+      }
+    }
+  }
+
+  .selectFilter .selectFilter__menu {
+    background-color: $color-dark-blue;
+    color: $color-white;
   }
 }

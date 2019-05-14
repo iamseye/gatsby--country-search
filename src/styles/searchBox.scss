@@ -5,6 +5,7 @@
   align-items: center;
   margin-left: 1.5rem;
   position: relative;;
+  width: 40%;
 
   &__input {
     padding: .5rem 1rem;
@@ -18,6 +19,10 @@
     right: 0;
   }
 
+  > div {
+    width: 100%;
+  }
+
   svg{
     margin-left: .8rem;
   }
@@ -25,6 +30,10 @@
   input {
     margin-left: 1rem;
   }
+}
+
+.searchBox .searchBox__input {
+  box-shadow: 0 0 0.3rem $color-light-grey;
 }
 
 .fa-search {
@@ -39,6 +48,7 @@ body.dark {
 
   .searchBox__input {
     background-color: $color-dark-blue;
+    box-shadow: 0 0 0.5rem $color-dark-blue-shade;
 
     input {
       &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
