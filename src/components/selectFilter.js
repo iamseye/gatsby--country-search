@@ -6,6 +6,18 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { withStyles } from '@material-ui/core/styles';
 import '../styles/selectFilter.scss';
 
+const styles = theme => ({
+  dropdownStyle: {
+    backgroundColor: 'var(--bg)',
+    color: 'var(--textColor)',
+  },
+  menuStyle: {
+    color: 'var(--textColor)',
+  },
+  iconStyle: {
+    color: 'var(--textColor)',
+  },
+});
 
 const SelectFilter = props => (
   <div className="selectFilter">
@@ -21,7 +33,12 @@ const SelectFilter = props => (
             horizontal: 'left',
           },
           getContentAnchorEl: null,
-          classes: { paper: 'selectFilter__menu' },
+          classes: {
+            paper: props.classes.dropdownStyle,
+          },
+        }}
+        classes={{
+          icon: props.classes.iconStyle,
         }}
         className="selectFilter__select"
         displayEmpty
@@ -37,18 +54,18 @@ const SelectFilter = props => (
           />
         )}
       >
-        <MenuItem value="">
+        <MenuItem className={props.classes.menuStyle} value="">
           <em>Filter by Region</em>
         </MenuItem>
-        <MenuItem value="africa">Africa</MenuItem>
-        <MenuItem value="americas">Americas</MenuItem>
-        <MenuItem value="asia">Asia</MenuItem>
-        <MenuItem value="europe">Europe</MenuItem>
-        <MenuItem value="oceania">Oceania</MenuItem>
+        <MenuItem className={props.classes.menuStyle} value="africa">Africa</MenuItem>
+        <MenuItem className={props.classes.menuStyle} value="americas">Americas</MenuItem>
+        <MenuItem className={props.classes.menuStyle} value="asia">Asia</MenuItem>
+        <MenuItem className={props.classes.menuStyle} value="europe">Europe</MenuItem>
+        <MenuItem className={props.classes.menuStyle} value="oceania">Oceania</MenuItem>
 
       </Select>
     </FormControl>
   </div>
 );
 
-export default SelectFilter;
+export default withStyles(styles)(SelectFilter);

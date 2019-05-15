@@ -6,7 +6,7 @@
   &__form {
     background-color: $color-white;
     border-radius: 4px;
-    
+
     fieldset {
       border-color: $color-white;
     }
@@ -29,11 +29,18 @@
 
 .selectFilter .selectFilter__menu {
   box-shadow: 0 0 0.3rem $color-light-grey;
-  background-color: $color-white;
-  color: black;
+
+}
+
+body {
+  --bg: #FFFFFF;
+  --textColor: #000000;
 }
 
 body.dark {
+  --bg: #2B3945;
+  --textColor: #FFFFFF;
+
   .selectFilter {
     &__form {
       background-color: $color-dark-blue;
@@ -43,6 +50,8 @@ body.dark {
       }
     }
     &__select {
+      color: $color-white;
+
       > div > div {
         background-color: $color-dark-blue;
         box-shadow: 0 0 0.3rem $color-dark-blue-shade;
@@ -55,7 +64,6 @@ body.dark {
   }
 
   .selectFilter .selectFilter__menu {
-    background-color: $color-dark-blue;
-    color: $color-white;
+
   }
 }
