@@ -25,6 +25,10 @@ class MainContent extends Component {
       .catch(console.log);
   }
 
+  emptySearch = () => {
+    this.listAllCountires();
+  }
+
   handleSelectRegion = (event) => {
     const selectedRegion = event.target.value;
     this.setState({ filterRegion: selectedRegion });
@@ -58,6 +62,7 @@ class MainContent extends Component {
           <SearchBox
             countries={countries}
             searchCountry={this.searchCountry}
+            emptySearch={this.emptySearch}
           />
           <SelectFilter
             filterRegion={this.state.filterRegion}

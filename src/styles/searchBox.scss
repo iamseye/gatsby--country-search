@@ -23,7 +23,7 @@
     width: 100%;
   }
 
-  svg{
+  svg {
     margin-left: .8rem;
   }
 
@@ -50,7 +50,10 @@ body.dark {
     background-color: $color-dark-blue;
     box-shadow: 0 0 0.5rem $color-dark-blue-shade;
 
-    input {
+    input, [contenteditable]{
+      color: $color-white;
+      caret-color: $color-white;
+
       &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: $color-white;
       }

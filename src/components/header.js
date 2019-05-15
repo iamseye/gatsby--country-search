@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon as darkMoon } from '@fortawesome/free-solid-svg-icons';
-import { faMoon } from '@fortawesome/free-regular-svg-icons';
+import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
 import { ThemeToggler } from 'gatsby-plugin-dark-mode';
 import '../styles/header.scss';
 
@@ -18,14 +18,20 @@ const Header = () => (
           onClick={() => toggleTheme(theme === 'dark' ? 'light' : 'dark')}
         >
           {theme === 'dark' ? (
-            <FontAwesomeIcon icon={darkMoon} />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <FontAwesomeIcon icon={faSun} />
+              <p>
+                Light Mode
+              </p>
+            </div>
           ) : (
-            <FontAwesomeIcon icon={faMoon} />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <FontAwesomeIcon icon={faMoon} />
+              <p>
+                Dark Mode
+              </p>
+            </div>
           )}
-
-          <p>
-            Dark Mode
-          </p>
         </div>
       )}
     </ThemeToggler>
