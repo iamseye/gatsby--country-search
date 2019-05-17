@@ -11,7 +11,6 @@ class MainContent extends Component {
     filterRegion: '',
   }
 
-
   componentDidMount() {
     this.listAllCountires();
   }
