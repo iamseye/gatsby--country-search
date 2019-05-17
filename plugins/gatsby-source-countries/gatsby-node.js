@@ -46,7 +46,4 @@ exports.sourceNodes = (
         });
       })
   );
-
-  // plugin code goes here...
-  console.log('Testing my plugin', configOptions)
 };
