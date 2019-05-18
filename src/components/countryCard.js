@@ -7,6 +7,7 @@ import '../styles/card.scss';
 const CountryCard = props => (
   <Card
     className="country-card"
+    onClick={() => props.toDetail(props.countryCode)}
   >
     <div className="country-card__image--outer">
       <CardMedia

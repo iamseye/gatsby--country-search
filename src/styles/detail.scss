@@ -1,0 +1,22 @@
+@import '_variables';
+
+.detailContent {
+  display: flex;
+}
+.link-btn {
+  box-shadow: 0 0 0.3rem $color-light-grey;
+  text-decoration: none;
+  display: inline-block;
+  padding: .5rem 2.2rem;
+  color: $color-black;
+  background-color: $color-white;
+  border-radius: 5px;
+
+  svg {
+    margin-right: .6rem;
+  }
+}
+
+.detail__info-text {
+  display: inline;
+}

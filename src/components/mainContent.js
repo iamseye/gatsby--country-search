@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, navigate, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
 import CountryCard from './countryCard';
 import SearchBox from './searchBox';
@@ -68,6 +68,9 @@ class MainContent extends Component {
     });
   }
 
+  clickCard(countryCode) {
+    navigate(`/country/${countryCode}`);
+  }
 
   render() {
     const { countries, resultCountries } = this.state;
@@ -88,11 +91,13 @@ class MainContent extends Component {
           {resultCountries.map(({ node }) => (
             <CountryCard
               key={node.alpha2Code}
+              countryCode={node.alpha2Code}
               image={node.flag}
               countryName={node.name}
               population={node.population}
               regin={node.region}
               capital={node.capital}
+              toDetail={this.clickCard}
             />
           ))}
         </div>

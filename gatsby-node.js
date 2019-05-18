@@ -30,6 +30,7 @@ exports.createPages = ({ actions, graphql }) => {
             capital
             borders
             topLevelDomain
+            flag
             currencies {
               name
             }
