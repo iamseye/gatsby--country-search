@@ -1,27 +1,48 @@
 import React, { Component } from 'react';
+import { StaticQuery, graphql } from 'gatsby';
+import * as JsSearch from 'js-search';
 import CountryCard from './countryCard';
 import SearchBox from './searchBox';
 import SelectFilter from './selectFilter';
 import '../styles/mainContent.scss';
 
 class MainContent extends Component {
-  state = {
-    countries: [],
-    resultCountries: [],
-    filterRegion: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      countries: props.allCountries,
+      resultCountries: props.allCountries,
+      filterRegion: '',
+      search: [],
+    };
   }
 
-  componentDidMount() {
-    this.listAllCountires();
+  async componentDidMount() {
+    this.rebuildIndex();
+  }
+
+  // rebuilds the overall index based on the options
+  rebuildIndex = () => {
+    const { countries } = this.state;
+    const countryToSearch = new JsSearch.Search(['node', 'id']);
+
+    countryToSearch.indexStrategy = new JsSearch.PrefixIndexStrategy();
+    countryToSearch.sanitizer = new JsSearch.LowerCaseSanitizer();
+
+    countryToSearch.searchIndex = new JsSearch.TfIdfSearchIndex(['node', 'id']);
+
+    countryToSearch.addIndex(['node', 'name']); // sets the index attribute for the data
+    countryToSearch.addIndex(['node', 'alpha2Code']); // sets the index attribute for the data
+    countryToSearch.addIndex(['node', 'region']); // sets the index attribute for the data
+    countryToSearch.addDocuments(countries);
+
+    this.setState({ search: countryToSearch });
   }
 
   searchCountry = (selectedCountry) => {
-    fetch(`${process.env.GATSBY_SEARCH_COUNTRY_API}${selectedCountry}`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({ resultCountries: [data] });
-      })
-      .catch(console.log);
+    const { search } = this.state;
+    const queryResult = search.search(selectedCountry);
+    this.setState({ resultCountries: queryResult });
   }
 
   emptySearch = () => {
@@ -32,26 +53,21 @@ class MainContent extends Component {
     const selectedRegion = event.target.value;
     this.setState({ filterRegion: selectedRegion });
     if (selectedRegion !== '') {
-      fetch(`${process.env.GATSBY_SEARCH_REGION_API}${event.target.value}`)
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ resultCountries: data });
-        })
-        .catch(console.log);
+      const { search } = this.state;
+      const queryResult = search.search(selectedRegion);
+      this.setState({ resultCountries: queryResult });
     } else {
       this.listAllCountires();
     }
   };
 
   listAllCountires() {
-    fetch(`${process.env.GATSBY_ALL_COUNTRIES_API}`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({ countries: data, resultCountries: data });
-        console.log(data);
-      })
-      .catch(console.log);
+    this.setState({
+      countries: this.props.allCountries,
+      resultCountries: this.props.allCountries
+    });
   }
+
 
   render() {
     const { countries, resultCountries } = this.state;
@@ -69,14 +85,14 @@ class MainContent extends Component {
           />
         </div>
         <div className="countryCards">
-          {resultCountries.map(country => (
+          {resultCountries.map(({ node }) => (
             <CountryCard
-              key={country.alpha2Code}
-              image={country.flag}
-              countryName={country.name}
-              population={country.population}
-              regin={country.region}
-              capital={country.capital}
+              key={node.alpha2Code}
+              image={node.flag}
+              countryName={node.name}
+              population={node.population}
+              regin={node.region}
+              capital={node.capital}
             />
           ))}
         </div>
@@ -85,4 +101,29 @@ class MainContent extends Component {
   }
 }
 
-export default MainContent;
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        allCountries {
+          edges {
+            node {
+              id
+              name
+              alpha2Code
+              region
+              borders
+              population
+              flag
+              capital
+              borders
+            }
+          }
+        }
+      }
+    `}
+    render={data => (
+      <MainContent allCountries={data.allCountries.edges} />
+    )}
+  />
+);

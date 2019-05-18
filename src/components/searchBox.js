@@ -17,7 +17,7 @@ function getSuggestions(countries, value) {
     ? []
     : countries.filter((country) => {
       const keep =
-        count < 5 && country.name.slice(0, inputLength).toLowerCase() === inputValue;
+        count < 5 && country.node.name.slice(0, inputLength).toLowerCase() === inputValue;
 
       if (keep) {
         count += 1;
@@ -30,7 +30,7 @@ function getSuggestions(countries, value) {
 const SearchBox = props => (
   <div className="searchBox">
     <Downshift
-      onChange={selection => props.searchCountry(selection.alpha2Code)}
+      onChange={selection => props.searchCountry(selection.node.alpha2Code)}
       itemToString={item => (item ? item.name : '')}
     >
       {({
@@ -64,7 +64,7 @@ const SearchBox = props => (
                     .map((item, index) => (
                       <MenuItem
                         {...getItemProps({
-                          key: item.alpha2Code,
+                          key: item.node.alpha2Code,
                           index,
                           item,
                           style: {
@@ -74,7 +74,7 @@ const SearchBox = props => (
                           },
                         })}
                       >
-                        {item.name}
+                        {item.node.name}
                       </MenuItem>
                     ))}
                 </Paper>
