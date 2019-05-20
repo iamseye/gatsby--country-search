@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { StaticQuery, Link } from 'gatsby';
 import '../styles/detail.scss';
 
 const DetailContent = ({ data }) => (
-  <div className="detailContent">
+  <div className="detail">
     <div className="detail__left">
       <img src={data.flag} alt="flag" />
     </div>
     <div className="detail__right">
-      <div className="detail__title">{data.name}</div>
+      <h1 className="detail__title">{data.name}</h1>
       <div className="detail__info">
         <div className="detail__info--left">
           <ul>
@@ -43,23 +43,30 @@ const DetailContent = ({ data }) => (
             </li>
             <li>
               <p className="detail__info-text">Currencies: </p>
-              {data.capital}
+              {data.currencies.map((currency, index) => (
+                index === 0 ? currency.name : `,${currency.name}`
+              ))}
             </li>
             <li>
               <p className="detail__info-text">Languages: </p>
-              {data.capital}
+              {data.languages.map((lang, index) => (
+                index === 0 ? lang.name : `, ${lang.name}`
+              ))}
             </li>
           </ul>
         </div>
       </div>
       <div className="detail__borders">
-        <p className="detail__info-text">Border Countries</p>
-        <Link
-          to="/"
-          className="link-btn"
-        >
-          Back
-        </Link>
+        <p className="detail__info-text">Border Countries:</p>
+        {data.borders.map(country => (
+          <Link
+            style={{ marginLeft: '1rem' }}
+            to="/detail/"
+            className="link-btn"
+          >
+            {country}
+          </Link>
+        ))}
       </div>
     </div>
   </div>

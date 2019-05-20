@@ -1,8 +1,46 @@
 @import '_variables';
 
-.detailContent {
+.detail {
   display: flex;
+  align-items: center;
+  position: relative;
+
+  &__left {
+    margin-left: 3rem;
+    width: 40%
+  }
+
+  &__right {
+    margin-left: 10rem;
+  }
+
+  &__info {
+    display: flex;
+
+    ul {
+      margin: 0;
+      list-style-type: none;
+    }
+
+    &--right {
+      margin-left: 10rem;
+    }
+    &-text {
+      display: inline;
+      font-weight: 600;
+    }
+  }
+
+  &__borders {
+    margin-top: 5rem;
+
+    a {
+      padding: .3rem 2.2rem;
+      border-radius: 3px;
+    }
+  }
 }
+
 .link-btn {
   box-shadow: 0 0 0.3rem $color-light-grey;
   text-decoration: none;
@@ -17,6 +55,19 @@
   }
 }
 
-.detail__info-text {
-  display: inline;
+body.dark {
+  background-color: $color-very-dark-blue-bg;
+
+
+  .detailPage {
+    color: $color-white;
+    background-color: $color-very-dark-blue-bg;
+
+    a {
+      color: $color-white;
+      background-color: $color-dark-blue;
+      box-shadow: 0 0 0.3rem $color-dark-blue-shade;
+
+    }
+  }
 }

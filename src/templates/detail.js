@@ -10,21 +10,23 @@ import '../styles/detail.scss';
 const DetailPage = ({ pageContext }) => (
   <Layout>
     <SEO title="Detail" keywords={[`gatsby`, `application`, `react`]} />
-    <div style={{
-      marginTop: '4rem',
-      marginLeft: '3rem',
-      marginBottom: '4rem'
-    }}
-    >
-      <Link
-        to="/"
-        className="link-btn"
+    <div className="detailPage">
+      <div style={{
+        marginLeft: '3rem',
+        marginBottom: '4rem'
+      }}
       >
-        <FontAwesomeIcon icon={faArrowLeft} />
-        Back
-      </Link>
+        <Link
+          to="/"
+          className="link-btn"
+          style={{ marginTop: '4rem' }}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+          Back
+        </Link>
+      </div>
+      <DetailContent data={pageContext.data} />
     </div>
-    <DetailContent data={pageContext.data} />
   </Layout>
 );
 

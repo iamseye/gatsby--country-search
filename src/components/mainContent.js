@@ -34,6 +34,8 @@ class MainContent extends Component {
     countryToSearch.addIndex(['node', 'name']); // sets the index attribute for the data
     countryToSearch.addIndex(['node', 'alpha2Code']); // sets the index attribute for the data
     countryToSearch.addIndex(['node', 'region']); // sets the index attribute for the data
+    countryToSearch.addIndex(['node', 'alpha3Code']); // sets the index attribute for the data
+
     countryToSearch.addDocuments(countries);
 
     this.setState({ search: countryToSearch });
@@ -69,6 +71,7 @@ class MainContent extends Component {
   }
 
   clickCard(countryCode) {
+    console.log()
     navigate(`/country/${countryCode}`);
   }
 
