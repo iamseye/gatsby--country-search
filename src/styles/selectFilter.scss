@@ -1,7 +1,13 @@
+@import '_mixins';
 @import '_variables';
 
 .selectFilter {
   margin-right: 1.5rem;
+
+  @include respond(phone) {
+    width: fit-content;
+    margin-top: 2rem;
+  }
 
   &__form {
     background-color: $color-white;

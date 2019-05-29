@@ -58,15 +58,16 @@ const DetailContent = ({ data }) => (
       </div>
       <div className="detail__borders">
         <p className="detail__info-text">Border Countries:</p>
-        {data.borders.map(country => (
-          <Link
-            style={{ marginLeft: '1rem' }}
-            to="/detail/"
-            className="link-btn"
-          >
-            {country}
-          </Link>
-        ))}
+        <div className="detail__info-borders">
+          {data.borders.map(country => (
+            <Link
+              to="/detail/"
+              className="link-btn"
+            >
+              {country}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   </div>

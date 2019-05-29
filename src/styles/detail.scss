@@ -1,3 +1,4 @@
+@import '_mixins';
 @import '_variables';
 
 .detail {
@@ -5,17 +6,37 @@
   align-items: center;
   position: relative;
 
+  @include respond(phone) {
+    flex-flow: column;
+    align-items: center;
+  }
+
   &__left {
     margin-left: 3rem;
-    width: 40%
+    width: 40%;
+
+    @include respond(phone) {
+      margin-left: 0;
+      width: 85%;
+    }
+
   }
 
   &__right {
     margin-left: 10rem;
+
+    @include respond(phone) {
+      align-self: flex-start;
+      margin-left: 4rem;
+    }
   }
 
   &__info {
     display: flex;
+
+    @include respond(phone) {
+      flex-flow: column;
+    }
 
     ul {
       margin: 0;
@@ -24,10 +45,24 @@
 
     &--right {
       margin-left: 10rem;
+
+      @include respond(phone) {
+        margin-left: 0;
+      }
     }
     &-text {
       display: inline;
       font-weight: 600;
+    }
+
+    &-borders {
+      a {
+        margin-top: 1rem;
+
+        &:not(:first-child){
+          margin-left: 1rem;
+        }
+      }
     }
   }
 
